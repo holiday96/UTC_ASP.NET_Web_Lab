@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\UTC_ASP.NET_Web_Lab.props" />
+</Project>
