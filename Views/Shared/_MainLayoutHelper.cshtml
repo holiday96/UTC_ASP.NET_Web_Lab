@@ -15,7 +15,7 @@
 </head>
 <body>
     <partial name="TopNav" />
-    @await Component.InvokeAsync("Render");
+    @await Component.InvokeAsync("Render")
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -29,6 +29,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
-    @RenderSection("Script", false);
+    @RenderSection("Script", false)
 </body>
 </html>
