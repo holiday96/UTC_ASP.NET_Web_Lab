@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MenuItem>
+<div class="sidebar bg-dark">
+    <h5 class="text-white">Management System</h5>
+    <ul class="nav flex-column">
+        @foreach(var menuItem in Model)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="@menuItem.Link">@menuItem.Name</a>
+            </li>
+        }
+    </ul>
+</div>

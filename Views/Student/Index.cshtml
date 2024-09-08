@@ -1,10 +1,10 @@
 ﻿@{
     ViewData["Title"] = "List Student";
+    Layout = "~/Views/Shared/_MainLayoutHelper.cshtml";
 }
 @model IEnumerable<Student>
 
-<a href="/Admin/Student/Add" class="btn btn-primary">Create Student using HTML Thuần</a>
-<a asp-action="Create" class="btn btn-primary">Create Student using HTML Tag Helper</a>
+<a asp-action="Create" class="btn btn-primary">Create Student</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -63,3 +63,9 @@
         }
     </tbody>
 </table>
+
+@section Script {
+    <script>
+        $('table').css('border-color', 'red');
+    </script>
+}

@@ -39,12 +39,12 @@ app.UseEndpoints(endpoints =>
 {
     _ = endpoints.MapControllerRoute(
         name: "student_index",
-        pattern: "Admin/Student/List",
+        pattern: "Admin/Students/List",
         defaults: new { controller = "Student", action = "Index" }
     );
     _ = endpoints.MapControllerRoute(
         name: "student_create",
-        pattern: "Admin/Student/Add",
+        pattern: "Admin/Students/Add",
         defaults: new { controller = "Student", action = "Create" }
     );
     _ = endpoints.MapControllerRoute(

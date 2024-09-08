@@ -1,3 +1,22 @@
+body {
+    margin-left: 250px;
+}
+
+/* sidebar */
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+.sidebar ul li a {
+    color: grey;
+}
+
 form > .table th {
     width: 100%;
 }
