@@ -17,6 +17,6 @@ body {
     color: grey;
 }
 
-form > .table th {
-    width: 100%;
+footer {
+    height: 2.2rem;
 }

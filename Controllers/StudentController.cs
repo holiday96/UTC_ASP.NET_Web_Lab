@@ -53,20 +53,39 @@ namespace UTC_ASP.NET_Web_Lab.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Student student)
         {
-            if (student.ProfileImage != null && student.ProfileImage.Length > 0)
+            if (ModelState.IsValid)
             {
-                var fileName = Path.GetFileName(student.ProfileImage.FileName);
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                // Check image input
+                if (student.ProfileImage != null && student.ProfileImage.Length > 0)
                 {
-                    await student.ProfileImage.CopyToAsync(stream);
+                    var fileName = Path.GetFileName(student.ProfileImage.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await student.ProfileImage.CopyToAsync(stream);
+                    }
+                    student.ProfileImagePath = $"/images/{fileName}";
                 }
-                student.ProfileImagePath = $"/images/{fileName}";
-            }
-            student.Id = listStudents.Last().Id + 1;
-            listStudents.Add(student);
-            return View("Index", listStudents);
+
+                // Add student
+                student.Id = listStudents.Last().Id + 1;
+                listStudents.Add(student);
+
+                return View("Index", listStudents);
+            };
+
+            // Load data
+            ViewBag.AllGenders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList();
+            ViewBag.AllBranches = new List<SelectListItem>()
+            {
+                new() { Text = "IT", Value = "1" },
+                new() { Text = "BE", Value = "2" },
+                new() { Text = "CE", Value = "3" },
+                new() { Text = "EE", Value = "4" }
+            };
+
+            return View();
         }
     }
 }
