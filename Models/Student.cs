@@ -42,8 +42,8 @@ namespace UTC_ASP.NET_Web_Lab.Models
         [Required(ErrorMessage = "Ngày sinh bắt buộc phải được nhập")]
         [DataType(DataType.Date)]
         [Range(
-            typeof(DateTime), "1/1/1963", "12/31/2005",
-            ErrorMessage = "Ngày sinh phải nằm trong khoảng 1/1/1963 đến 12/31/2005"
+            typeof(DateTime), "1/1/1963", "31/12/2005",
+            ErrorMessage = "Ngày sinh phải nằm trong khoảng 1/1/1963 đến 31/12/2005"
         )]
         public DateTime? DateOfBirth { get; set; }
 
