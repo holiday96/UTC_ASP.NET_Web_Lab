@@ -4,17 +4,31 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+// Configure DbContext for SchoolContext
+builder.Services.AddDbContext<SchoolContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolContext"))
+);
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+// Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages(); // Add Razor Pages services
+
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseSqlServer(connectionString));
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 var app = builder.Build();
+
+// Initialize the database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    DbInitializer.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,6 +49,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Map controllers and Razor Pages
 app.UseEndpoints(endpoints =>
 {
     _ = endpoints.MapControllerRoute(
@@ -46,6 +61,11 @@ app.UseEndpoints(endpoints =>
         name: "student_create",
         pattern: "Admin/Students/Add",
         defaults: new { controller = "Student", action = "Create" }
+    );
+    _ = endpoints.MapControllerRoute(
+        name: "learner_index",
+        pattern: "Admin/Learners/List",
+        defaults: new { controller = "Learner", action = "Index" }
     );
     _ = endpoints.MapControllerRoute(
         name: "default",

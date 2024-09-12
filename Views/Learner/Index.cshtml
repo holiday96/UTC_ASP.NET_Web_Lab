@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Learner List";
+    Layout = "~/Views/Shared/_MainLayoutHelper.cshtml";
+}
+@model IEnumerable<Learner>
+
+<div class="d-flex justify-content-between">
+    <h1>Learner List</h1>
+    <div class="align-self-end">
+        <a asp-action="Create" class="btn btn-primary">Create Learner</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Họ</th>
+            <th>Ngành</th>
+            <th>Ngày nhập học</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td class="align-content-center">@s.LearnerID</td>
+                <td class="align-content-center">@s.FirstMidName</td>
+                <td class="align-content-center">@s.LastName</td>
+                <td class="align-content-center">@s.Major?.MajorName</td>
+                <td class="align-content-center">@s.EnrollmentDate</td>
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@s.LearnerID">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@s.LearnerID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
