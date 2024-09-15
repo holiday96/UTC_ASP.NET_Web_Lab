@@ -107,8 +107,8 @@ GO
 -- ----------------------------
 -- Auto increment value for Course
 -- ----------------------------
-DBCC CHECKIDENT ('[dbo].[Course]', RESEED, 1)
-GO
+--DBCC CHECKIDENT ('[dbo].[Course]', RESEED, 1)
+--GO
 
 
 -- ----------------------------
