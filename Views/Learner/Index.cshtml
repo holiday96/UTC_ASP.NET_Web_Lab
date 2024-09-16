@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Learner List";
+    ViewData["Title"] = "List Learner";
     Layout = "~/Views/Shared/_MainLayoutHelper.cshtml";
 }
 @model IEnumerable<Learner>
 
 <div class="d-flex justify-content-between">
-    <h1>Learner List</h1>
+    <h1 class="my-4">Danh sách học viên</h1>
     <div class="align-self-end">
-        <a asp-action="Create" class="btn btn-primary">Create Learner</a>
+        <a asp-action="Create" class="btn btn-primary">Thêm mới học viên</a>
     </div>
 </div>
 <table class="table table-striped">
@@ -31,8 +31,8 @@
                 <td class="align-content-center">@s.Major?.MajorName</td>
                 <td class="align-content-center">@s.EnrollmentDate</td>
                 <td>
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@s.LearnerID">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@s.LearnerID">Delete</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@s.LearnerID">Sửa</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@s.LearnerID">Xoá</a>
                 </td>
             </tr>
         }

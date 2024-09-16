@@ -4,7 +4,12 @@
 }
 @model IEnumerable<Student>
 
-<a asp-action="Create" class="btn btn-primary">Create Student</a>
+<div class="d-flex justify-content-between">
+    <h1 class="my-4">Danh sách học sinh</h1>
+    <div class="align-self-end">
+        <a asp-action="Create" class="btn btn-primary">Thêm mới học sinh</a>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -55,8 +60,8 @@
                     }
                 }
                 <td>@str</td>
-                <td>@(s.Gender==Gender.Male? "Nam" : "Nữ")</td>
-                <td>@(s.IsRegular?"Chính quy":"Phi chính quy")</td>
+                <td>@(s.Gender == Gender.Male ? "Nam" : "Nữ")</td>
+                <td>@(s.IsRegular ? "Chính quy" : "Phi chính quy")</td>
                 <td>@s.Address</td>
                 <td>@s.Email</td>
             </tr>

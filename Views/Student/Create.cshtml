@@ -4,9 +4,9 @@
 @model Student
 
 <div class="d-flex d-flex flex-column">
+    <h1>Thêm sinh viên</h1>
     <div asp-validation-summary="All" class="text-danger"></div>
     <form asp-controller="Student" asp-action="Create" method="post" enctype="multipart/form-data" class="mt-3">
-        <h1>Thêm sinh viên</h1>
         <table class="table table-borderless w-75">
             <tbody>
                 <tr>
@@ -90,7 +90,7 @@
                 <tr>
                     <th></th>
                     <td colspan="2">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
                     </td>
                 </tr>
             </tbody>

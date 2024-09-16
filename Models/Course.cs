@@ -7,6 +7,7 @@ namespace UTC_ASP.NET_Web_Lab.Models
         public Course() {
             Enrollments = [];
         }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CourseId { get; set; }
         public string Title { get; set; }
         public int Credits { get; set; }
