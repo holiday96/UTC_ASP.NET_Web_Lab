@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Major>
+<ul class="nav flex-column ms-2">
+    @foreach(var m in Model)
+    {
+        // Using sync AJAX
+        /**
+        <li class="nav-item">
+        <a class="nav-link"
+        aps-controller="Learner"
+        asp-action="Index"
+        asp-router-mid="@m.MajorID"
+        >▶@m.MajorName</a>
+        </li>
+        */
+
+        // Using async AJAX
+        <li class="nav-item" id="@m.MajorID">
+            <a class="nav-link">▶@m.MajorName</a>
+        </li>
+    }
+</ul>

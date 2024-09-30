@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "List Course";
+    Layout = "~/Views/Shared/_MainLayoutHelper.cshtml";
+}
+@model IEnumerable<Course>
+
+<div class="d-flex justify-content-between">
+    <h1 class="my-4">Danh sách lớp học</h1>
+    <div class="align-self-end">
+        <a asp-action="Create" class="btn btn-primary">Thêm mới lớp học</a>
+    </div>
+</div>
+<div id="content">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã</th>
+                <th>Tên lớp học</th>
+                <th>Số tín chỉ</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td class="align-content-center">@s.CourseId</td>
+                    <td class="align-content-center">@s.Title</td>
+                    <td class="align-content-center">@s.Credits</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@s.CourseId">Sửa</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@s.CourseId">Xoá</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

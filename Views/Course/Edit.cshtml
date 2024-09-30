@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Edit Course";
+    Layout = "~/Views/Shared/_MainLayoutHelper.cshtml";
+}
+@model Course
+<div class="d-flex d-flex flex-column">
+    <h1>Cập nhật lớp học</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-controller="Course" asp-action="Edit" asp-route-id="@Model.CourseId" method="post" class="mt-3">
+        <table class="table table-borderless w-75">
+            <tbody>
+                <tr>
+                    <th class="col-sm-2 col-form-label text-end">
+                        <label asp-for="Title"></label>
+                    </th>
+                    <td>
+                        <input asp-for="Title" class="form-control" placeholder="Tên lớp học">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-2 col-form-label text-end">
+                        <label asp-for="Credits"></label>
+                    </th>
+                    <td>
+                        <input asp-for="Credits" class="form-control" placeholder="Số tín chỉ">
+                        <span asp-validation-for="Credits" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" asp-for="CourseId" />
+    </form>
+</div>

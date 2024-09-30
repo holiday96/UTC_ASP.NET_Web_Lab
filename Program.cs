@@ -52,6 +52,7 @@ app.UseAuthorization();
 // Map controllers and Razor Pages
 app.UseEndpoints(endpoints =>
 {
+    // Student
     _ = endpoints.MapControllerRoute(
         name: "student_index",
         pattern: "Admin/Students/List",
@@ -62,11 +63,27 @@ app.UseEndpoints(endpoints =>
         pattern: "Admin/Students/Add",
         defaults: new { controller = "Student", action = "Create" }
     );
+
+    // Learner
     _ = endpoints.MapControllerRoute(
         name: "learner_index",
         pattern: "Admin/Learners/List",
         defaults: new { controller = "Learner", action = "Index" }
     );
+    _ = endpoints.MapControllerRoute(
+        name: "learner_by_id",
+        pattern: "Admin/Learners/LearnerByMajorID/{id?}",
+        defaults: new { controller = "Learner", action = "LearnerByMajorID" }
+    );
+
+    // Course
+    _ = endpoints.MapControllerRoute(
+        name: "course_index",
+        pattern: "Admin/Courses/List",
+        defaults: new { controller = "Course", action = "Index" }
+    );
+
+    // Home
     _ = endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}"

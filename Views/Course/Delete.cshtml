@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Delete Learner";
+    Layout = "~/Views/Shared/_MainLayoutHelper.cshtml";
+}
+@model Course
+<div class="ms-2 mx-2">
+    <h1>Xoá lớp học</h1>
+    <h3>Bạn có chắc chắn muốn xoá lớp học này?</h3>
+    <h4>Lớp học</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Credits)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Credits)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="@Model.CourseId" />
+        <input type="submit" value="Xác nhận" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>

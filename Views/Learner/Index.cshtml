@@ -10,31 +10,48 @@
         <a asp-action="Create" class="btn btn-primary">Thêm mới học viên</a>
     </div>
 </div>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Mã</th>
-            <th>Tên</th>
-            <th>Họ</th>
-            <th>Ngành</th>
-            <th>Ngày nhập học</th>
-            <th>Chức năng</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var s in Model)
-        {
+<div id="content">
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td class="align-content-center">@s.LearnerID</td>
-                <td class="align-content-center">@s.FirstMidName</td>
-                <td class="align-content-center">@s.LastName</td>
-                <td class="align-content-center">@s.Major?.MajorName</td>
-                <td class="align-content-center">@s.EnrollmentDate</td>
-                <td>
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@s.LearnerID">Sửa</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@s.LearnerID">Xoá</a>
-                </td>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Họ</th>
+                <th>Ngành</th>
+                <th>Ngày nhập học</th>
+                <th>Chức năng</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td class="align-content-center">@s.LearnerID</td>
+                    <td class="align-content-center">@s.FirstMidName</td>
+                    <td class="align-content-center">@s.LastName</td>
+                    <td class="align-content-center">@s.Major?.MajorName</td>
+                    <td class="align-content-center">@s.EnrollmentDate</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@s.LearnerID">Sửa</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@s.LearnerID">Xoá</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $("li").click(function(e){
+            const id = $(this).prop("id");
+            $.ajax({
+                url: "LearnerByMajorID",
+                data: { mid : id},
+                success: function (res) {
+                    $("div#content").html(res);
+                }
+            });
+        });
+    </script>
+}
